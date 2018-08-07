@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="indicator_colors">
+        <item>@color/color_titlebar_light_theme</item>
+        <item>@color/color_f6f6f6</item>
+        <item>@color/color_black</item>
+        <item>@color/color_f2f2f2</item>
+    </array>
+    <array name="notity_tag">
+        <item>根据Id清除</item>
+        <item>根据Tag清除</item>
+    </array>
+</resources>

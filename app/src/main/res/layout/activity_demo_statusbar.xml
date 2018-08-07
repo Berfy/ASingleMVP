@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <cn.berfy.sdk.mvpbase.view.StatusMarginBar
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:bar_back_color="@color/color_f8df9d"></cn.berfy.sdk.mvpbase.view.StatusMarginBar>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="1000dp"
+                android:background="@color/color_f8df9d"
+                android:orientation="vertical"
+                android:padding="@dimen/space_10">
+
+                <HorizontalScrollView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:scrollbars="none">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <cn.berfy.sdk.mvpbase.view.CircleImageView
+                            android:layout_width="@dimen/space_50"
+                            android:layout_height="@dimen/space_50"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/ic_launcher"
+                            app:border_color="@color/color_white"
+                            app:border_width="@dimen/space_2" />
+
+                        <cn.berfy.sdk.mvpbase.view.CircleImageView
+                            android:layout_width="@dimen/space_50"
+                            android:layout_height="@dimen/space_50"
+                            android:layout_marginLeft="@dimen/space_20"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/ic_launcher"
+                            app:border_color="@color/color_white"
+                            app:border_width="@dimen/space_2" />
+
+                        <cn.berfy.sdk.mvpbase.view.CircleImageView
+                            android:layout_width="@dimen/space_50"
+                            android:layout_height="@dimen/space_50"
+                            android:layout_marginLeft="@dimen/space_20"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/ic_launcher"
+                            app:border_color="@color/color_white"
+                            app:border_width="@dimen/space_2" />
+
+                        <cn.berfy.sdk.mvpbase.view.CircleImageView
+                            android:layout_width="@dimen/space_50"
+                            android:layout_height="@dimen/space_50"
+                            android:layout_marginLeft="@dimen/space_20"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/ic_launcher"
+                            app:border_color="@color/color_white"
+                            app:border_width="@dimen/space_2" />
+
+                        <cn.berfy.sdk.mvpbase.view.CircleImageView
+                            android:layout_width="@dimen/space_50"
+                            android:layout_height="@dimen/space_50"
+                            android:layout_marginLeft="@dimen/space_20"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/ic_launcher"
+                            app:border_color="@color/color_white"
+                            app:border_width="@dimen/space_2" />
+
+                        <cn.berfy.sdk.mvpbase.view.CircleImageView
+                            android:layout_width="@dimen/space_50"
+                            android:layout_height="@dimen/space_50"
+                            android:layout_marginLeft="@dimen/space_20"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/ic_launcher"
+                            app:border_color="@color/color_white"
+                            app:border_width="@dimen/space_2" />
+
+                        <cn.berfy.sdk.mvpbase.view.CircleImageView
+                            android:layout_width="@dimen/space_50"
+                            android:layout_height="@dimen/space_50"
+                            android:layout_marginLeft="@dimen/space_20"
+                            android:src="@drawable/ic_launcher"
+                            app:border_color="@color/color_white"
+                            app:border_width="@dimen/space_2" />
+
+                    </LinearLayout>
+
+                </HorizontalScrollView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_10"
+                    android:text="标题我是一个标题"
+                    android:textColor="@color/white_normal"
+                    android:textSize="@dimen/font_16" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_10"
+                    android:text="标题我是一个标题"
+                    android:textColor="@color/color_titlebar_light_theme"
+                    android:textSize="@dimen/font_16" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_10"
+                    android:text="标题我是一个标题"
+                    android:textColor="@color/color_white"
+                    android:textSize="@dimen/font_16" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_10"
+                    android:text="标题我是一个标题"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="@dimen/font_16" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_10"
+                    android:text="标题我是一个标题"
+                    android:textColor="@color/color_titlebar_light_theme"
+                    android:textSize="@dimen/font_16" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_10"
+                    android:text="标题我是一个标题"
+                    android:textColor="@color/color_181927"
+                    android:textSize="@dimen/font_16" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_10"
+                    android:text="标题我是一个标题"
+                    android:textColor="@color/color_3ba27a"
+                    android:textSize="@dimen/font_16" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_10"
+                    android:text="标题我是一个标题"
+                    android:textColor="@color/color_titlebar_light_theme"
+                    android:textSize="@dimen/font_16" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_10"
+                    android:text="标题我是一个标题"
+                    android:textColor="@color/color_titlebar_light_theme"
+                    android:textSize="@dimen/font_16" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_10"
+                    android:text="标题我是一个标题"
+                    android:textColor="@color/color_50caf9"
+                    android:textSize="@dimen/font_16" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_10"
+                    android:text="标题我是一个标题"
+                    android:textColor="@color/color_titlebar_light_theme"
+                    android:textSize="@dimen/font_16" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_10"
+                    android:text="标题我是一个标题"
+                    android:textColor="@color/color_titlebar_light_theme"
+                    android:textSize="@dimen/font_16" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_10"
+                    android:text="标题我是一个标题"
+                    android:textColor="@color/color_titlebar_light_theme"
+                    android:textSize="@dimen/font_16" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_10"
+                    android:text="标题我是一个标题"
+                    android:textColor="@color/color_titlebar_light_theme"
+                    android:textSize="@dimen/font_16" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_10"
+                    android:text="标题我是一个标题"
+                    android:textColor="@color/color_titlebar_light_theme"
+                    android:textSize="@dimen/font_16" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_10"
+                    android:text="标题我是一个标题"
+                    android:textColor="@color/color_titlebar_light_theme"
+                    android:textSize="@dimen/font_16" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_10"
+                    android:text="标题我是一个标题"
+                    android:textColor="@color/color_titlebar_light_theme"
+                    android:textSize="@dimen/font_16" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_10"
+                    android:text="标题我是一个标题"
+                    android:textColor="@color/color_titlebar_light_theme"
+                    android:textSize="@dimen/font_16" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_10"
+                    android:text="标题我是一个标题"
+                    android:textColor="@color/color_titlebar_light_theme"
+                    android:textSize="@dimen/font_16" />
+
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

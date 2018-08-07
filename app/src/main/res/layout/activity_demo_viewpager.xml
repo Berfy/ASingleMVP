@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <cn.berfy.sdk.mvpbase.view.viewpager.viewpager.ScrollerViewPager
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1"></cn.berfy.sdk.mvpbase.view.viewpager.viewpager.ScrollerViewPager>
+
+
+    <cn.berfy.sdk.mvpbase.view.viewpager.SpringIndicator
+        android:id="@+id/indicator"
+        android:layout_width="@dimen/space_100"
+        android:layout_height="@dimen/space_50"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        app:siIndicatorColor="@color/color_titlebar_light_theme"
+        app:siRadiusMax="@dimen/space_8"
+        app:siRadiusMin="@dimen/space_5"
+        app:siSelectedTextColor="@color/white_normal"
+        app:siTextColor="@color/color_titlebar_light_theme"
+        app:siTextSize="@dimen/font_7"></cn.berfy.sdk.mvpbase.view.viewpager.SpringIndicator>
+</RelativeLayout>

@@ -1,0 +1,21 @@
+def supportVersion = "26.1.0"
+ext {
+    config = [
+            "applicationId"    : "cn.berfy.sdk.asingle",
+            "buildToolsVersion": "27.0.3",
+            "compileSdkVersion": 27,
+            "minSdkVersion"    : 19,
+            "targetSdkVersion" : 27,
+            "versionCode"      : 22,//1.4.4 ->21 //1.4.3-->20 1.4.2-->19 1.4.1-->18 1.4.0-->17 1.3.8-->16 1.3.7-->15 1.3.6-->14
+            // 1.3.5-->13 1.3.4-->12 1.3.3-->11 1.3.2-->10 1.3.1-->9
+            "versionName"      : "1.4.5"
+    ]
+
+    dependencies = [
+            "support-v4"  : "com.android.support:support-v4:${supportVersion}",
+            "appcompat-v7": "com.android.support:appcompat-v7:${supportVersion}",
+            "recyclerView": "com.android.support:recyclerView:${supportVersion}",
+            "design"      : "com.android.support:design:${supportVersion}",
+            "cardview-v7" : "com.android.support:cardview-v7:${supportVersion}"
+    ]
+}

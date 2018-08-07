@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:ripple="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:padding="@dimen/space_10"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="发送通知" />
+
+            <EditText
+                android:id="@+id/edit_notify_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_10"
+                android:hint="请填写通知标题" />
+
+            <EditText
+                android:id="@+id/edit_notify_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_10"
+                android:hint="请填写通知内容" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <Spinner
+                    android:id="@+id/spr_set_tag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:dropDownSelector="@drawable/button_normal"
+                    android:entries="@array/notity_tag"></Spinner>
+
+                <EditText
+                    android:id="@+id/edit_notify_set_tag"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_10"
+                    android:hint="请填写通知id或者tag，用于取消通知(默认id=时间戳，tag:'tag')" />
+            </LinearLayout>
+
+
+            <cn.berfy.sdk.mvpbase.view.RippleView
+                android:id="@+id/btn_send"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/space_45"
+                android:layout_marginTop="@dimen/space_10"
+                android:background="@drawable/button_normal"
+                android:gravity="center"
+                android:text="发送通知"
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                ripple:alphaFactor="1"
+                ripple:hover="true"
+                ripple:rippleColor="@color/colorAccent" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/space_10"
+                android:layout_marginTop="@dimen/space_10"
+                android:background="@color/color_white" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/space_10"
+                android:text="清空通知" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <Spinner
+                    android:id="@+id/spr_tag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:dropDownSelector="@drawable/button_normal"
+                    android:entries="@array/notity_tag"></Spinner>
+
+                <EditText
+                    android:id="@+id/edit_notify_id_or_tag"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_10"
+                    android:hint="id or tag" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <cn.berfy.sdk.mvpbase.view.RippleView
+                    android:id="@+id/btn_clear_tag"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/space_45"
+                    android:layout_marginRight="@dimen/space_5"
+                    android:layout_marginTop="@dimen/space_10"
+                    android:layout_weight="1"
+                    android:background="@drawable/button_normal"
+                    android:gravity="center"
+                    android:text="清除指定通知"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    ripple:alphaFactor="1"
+                    ripple:hover="true"
+                    ripple:rippleColor="@color/colorAccent" />
+
+                <cn.berfy.sdk.mvpbase.view.RippleView
+                    android:id="@+id/btn_clear"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/space_45"
+                    android:layout_marginLeft="@dimen/space_5"
+                    android:layout_marginTop="@dimen/space_10"
+                    android:layout_weight="1"
+                    android:background="@drawable/button_normal"
+                    android:gravity="center"
+                    android:text="清除所有通知"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    ripple:alphaFactor="1"
+                    ripple:hover="true"
+                    ripple:rippleColor="@color/colorAccent" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</LinearLayout>

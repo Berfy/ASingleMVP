@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/space_10">
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="通用Dialog" />
+
+    <EditText
+        android:id="@+id/edit_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="请填写标题"
+        app:layout_constraintTop_toBottomOf="@+id/tv_title" />
+
+    <EditText
+        android:id="@+id/edit_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="请填写内容"
+        app:layout_constraintTop_toBottomOf="@+id/edit_title" />
+
+    <cn.berfy.sdk.mvpbase.view.RippleView
+        android:id="@+id/btn_tip_dialog"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/space_35"
+        android:layout_marginRight="@dimen/space_5"
+        android:layout_marginTop="@dimen/space_10"
+        android:background="@drawable/button_normal"
+        app:rippleColor="@color/colorAccent"
+        android:gravity="center"
+        android:text="提示框"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/btn_sure_dialog"
+        app:layout_constraintTop_toBottomOf="@+id/edit_content" />
+
+    <cn.berfy.sdk.mvpbase.view.RippleView
+        android:id="@+id/btn_sure_dialog"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/space_35"
+        android:layout_marginLeft="@dimen/space_5"
+        android:layout_marginTop="@dimen/space_10"
+        android:background="@drawable/button_normal"
+        android:gravity="center"
+        android:text="确认框"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintLeft_toRightOf="@+id/btn_tip_dialog"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edit_content"
+        app:rippleColor="@color/colorAccent" />
+
+    <cn.berfy.sdk.mvpbase.view.RippleView
+        android:id="@+id/btn_custom_dialog"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/space_35"
+        android:layout_marginTop="@dimen/space_10"
+        android:background="@drawable/button_normal"
+        android:gravity="center"
+        android:text="自定义Dialog"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_sure_dialog"
+        app:rippleColor="@color/colorAccent" />
+
+</android.support.constraint.ConstraintLayout>
