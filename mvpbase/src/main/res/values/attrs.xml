@@ -47,4 +47,9 @@
         <attr name="border_width" format="dimension" />
         <attr name="border_color" format="color" />
     </declare-styleable>
+
+    <!--refreshView-->
+    <declare-styleable name="refreshView">
+        <attr name="bg_color" format="color" />
+    </declare-styleable>
 </resources>

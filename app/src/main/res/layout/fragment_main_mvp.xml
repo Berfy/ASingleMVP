@@ -30,7 +30,7 @@
             <cn.berfy.sdk.mvpbase.view.RippleView
                 android:id="@+id/btn"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="@dimen/space_50"
                 android:layout_centerInParent="true"
                 android:layout_marginTop="@dimen/space_10"
                 android:background="@drawable/button_normal"
@@ -44,7 +44,7 @@
             <cn.berfy.sdk.mvpbase.view.RippleView
                 android:id="@+id/btn_titlebar_show"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="@dimen/space_50"
                 android:layout_marginTop="@dimen/space_10"
                 android:background="@drawable/button_normal"
                 android:gravity="center"
@@ -57,7 +57,7 @@
             <cn.berfy.sdk.mvpbase.view.RippleView
                 android:id="@+id/btn_viewpager"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="@dimen/space_50"
                 android:layout_marginTop="@dimen/space_10"
                 android:background="@drawable/button_normal"
                 android:gravity="center"
@@ -70,7 +70,7 @@
             <cn.berfy.sdk.mvpbase.view.RippleView
                 android:id="@+id/btn_statusbar"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="@dimen/space_50"
                 android:layout_marginTop="@dimen/space_10"
                 android:background="@drawable/button_normal"
                 android:gravity="center"
@@ -83,7 +83,7 @@
             <cn.berfy.sdk.mvpbase.view.RippleView
                 android:id="@+id/btn_notify"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="@dimen/space_50"
                 android:layout_marginTop="@dimen/space_10"
                 android:background="@drawable/button_normal"
                 android:gravity="center"
@@ -96,7 +96,7 @@
             <cn.berfy.sdk.mvpbase.view.RippleView
                 android:id="@+id/btn_fragment"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="@dimen/space_50"
                 android:layout_marginTop="@dimen/space_10"
                 android:background="@drawable/button_normal"
                 android:gravity="center"
@@ -109,7 +109,7 @@
             <cn.berfy.sdk.mvpbase.view.RippleView
                 android:id="@+id/btn_permission"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="@dimen/space_50"
                 android:layout_marginTop="@dimen/space_10"
                 android:background="@drawable/button_normal"
                 android:gravity="center"
@@ -122,7 +122,7 @@
             <cn.berfy.sdk.mvpbase.view.RippleView
                 android:id="@+id/btn_dialog"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="@dimen/space_50"
                 android:layout_marginTop="@dimen/space_10"
                 android:background="@drawable/button_normal"
                 android:gravity="center"
@@ -135,7 +135,7 @@
             <cn.berfy.sdk.mvpbase.view.RippleView
                 android:id="@+id/btn_audio_record"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
+                android:layout_height="@dimen/space_50"
                 android:layout_marginTop="@dimen/space_10"
                 android:background="@drawable/button_normal"
                 android:gravity="center"

@@ -1,16 +1,28 @@
 package cn.berfy.sdk.mvpbase.util;
 
+import android.app.AppOpsManager;
 import android.content.Context;
+import android.graphics.Color;
+import android.os.Binder;
+import android.support.v4.content.ContextCompat;
 import android.widget.Toast;
+
+import java.lang.reflect.Method;
+
+import cn.berfy.sdk.mvpbase.R;
+import cn.berfy.sdk.mvpbase.util.toast.Style;
+import cn.berfy.sdk.mvpbase.util.toast.SuperToast;
 
 /**
  * 单例吐司工具类
  * Created by jjf on 2015/9/22.
+ * Berfy修改2017.12.12
  */
 public class ToastUtil {
 
+    private final String TAG = "吐司";
     private static ToastUtil mToastUtil;
-    private Toast mToast;
+    private SuperToast mToast;
     private Context mContext;
 
     public static void init(Context context) {
@@ -28,13 +40,30 @@ public class ToastUtil {
 
     private ToastUtil(Context context) {
         mContext = context;
-        mToast = Toast.makeText(mContext, "", Toast.LENGTH_SHORT);
+    }
+
+    private void init() {
+        if (null == mToast) {
+            mToast = new SuperToast(mContext)
+                    .setText("")
+                    .setDuration(Style.DURATION_SHORT)
+                    .setFrame(Style.FRAME_STANDARD)
+                    .setColor(ContextCompat.getColor(mContext, R.color.transparent_8a))
+                    .setAnimations(Style.ANIMATIONS_FADE);
+        }
     }
 
     public void showShort(String text) {
-        if (mToast != null) mToast.cancel();
-        mToast = Toast.makeText(mContext, text, Toast.LENGTH_SHORT);
-        mToast.show();
+        init();
+        if(mToast.isShowing()){
+            mToast.dismiss();
+        }
+        mToast.setText(text)
+                .setDuration(Style.DURATION_SHORT)
+                .setFrame(Style.FRAME_STANDARD)
+                .setColor(ContextCompat.getColor(mContext, R.color.transparent_8a))
+                .setAnimations(Style.ANIMATIONS_FADE)
+                .show();
     }
 
     public void showShort(int textResId) {
@@ -42,12 +71,32 @@ public class ToastUtil {
     }
 
     public void showLong(String text) {
-        if (mToast != null) mToast.cancel();
-        mToast = Toast.makeText(mContext, text, Toast.LENGTH_LONG);
-        mToast.show();
+        init();
+        LogF.d("loginError", "showLong--loginError==>" + text);
+        if(mToast.isShowing()){
+            mToast.dismiss();
+        }
+        mToast
+                .setText(text)
+                .setDuration(Style.DURATION_LONG)
+                .setFrame(Style.FRAME_STANDARD)
+                .setColor(Color.BLACK)
+                .setAnimations(Style.ANIMATIONS_FADE)
+                .show();
     }
 
     public void showLong(int textResId) {
-        showLong(mContext.getString(textResId));
+        init();
+        if(mToast.isShowing()){
+            mToast.dismiss();
+        }
+        mToast
+                .setText(mContext.getString(textResId))
+                .setDuration(Style.DURATION_SHORT)
+                .setFrame(Style.FRAME_STANDARD)
+                .setColor(Color.BLACK)
+                .setAnimations(Style.ANIMATIONS_FADE)
+                .show();
     }
+
 }

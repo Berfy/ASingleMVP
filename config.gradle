@@ -2,7 +2,7 @@ def supportVersion = "26.1.0"
 ext {
     config = [
             "applicationId"    : "cn.berfy.sdk.asingle",
-            "buildToolsVersion": "27.0.3",
+            "buildToolsVersion": "28.0.3",
             "compileSdkVersion": 27,
             "minSdkVersion"    : 19,
             "targetSdkVersion" : 27,

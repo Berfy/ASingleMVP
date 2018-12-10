@@ -4,4 +4,9 @@
     <string name="want_to_cancle">松开手指，取消发送</string>
     <string name="time_too_short">录音时间过短</string>
     <string name="long_click_record">按住说话</string>
+    <!--refresh_refreshing-->
+    <string name="tip_no_data">暂无相关内容</string>
+    <string name="tip_refresh_state_refreshing">正在刷新</string>
+    <string name="tip_refresh_state_pull_to_refresh">下拉刷新</string>
+    <string name="tip_refresh_state_release_to_refresh">松开刷新</string>
 </resources>

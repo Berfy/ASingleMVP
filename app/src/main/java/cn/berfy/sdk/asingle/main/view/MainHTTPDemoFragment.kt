@@ -199,8 +199,8 @@ class MainHTTPDemoFragment : CommonFragment<IMainHTTPDemoView, MainHTTPDemoPrese
                     }
                 })
         mHandler.sendEmptyMessage(0)
-        mWebView1?.visibility = View.VISIBLE
-        mWebView2?.visibility = View.VISIBLE
+        mWebView1.visibility = View.VISIBLE
+        mWebView2.visibility = View.VISIBLE
     }
 
     private val mHandler = object : Handler() {
