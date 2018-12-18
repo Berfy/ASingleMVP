@@ -29,6 +29,7 @@
         <activity android:name=".demo.permission.view.PermissionActivity"></activity>
         <activity android:name=".demo.dialog.view.DialogDemoActivity"></activity>
         <activity android:name=".demo.record.view.AudioRecordActivity"></activity>
+        <activity android:name="cn.berfy.sdk.mvpbase.util.map.MapActivity"></activity>
     </application>
 
 </manifest>

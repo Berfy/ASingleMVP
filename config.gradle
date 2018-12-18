@@ -1,4 +1,4 @@
-def supportVersion = "26.1.0"
+def supportVersion = "27.1.1"
 ext {
     config = [
             "applicationId"    : "cn.berfy.sdk.asingle",

@@ -160,6 +160,18 @@ public class TitleBarView extends LinearLayout {
         }
     }
 
+    public void setLeftIcon(boolean isShow, OnClickListener onClickListener) {
+        if (isShow) {
+            mLlLeft.setVisibility(View.VISIBLE);
+            mIvBack.setVisibility(View.VISIBLE);
+            mTvLeft.setVisibility(GONE);
+        } else {
+            mLlLeft.setVisibility(View.INVISIBLE);
+        }
+        if (null != onClickListener)
+            mLlLeft.setOnClickListener(onClickListener);
+    }
+
     public void setLeftIcon(boolean isShow, int iconResId, OnClickListener onClickListener) {
         if (isShow) {
             mLlLeft.setVisibility(View.VISIBLE);

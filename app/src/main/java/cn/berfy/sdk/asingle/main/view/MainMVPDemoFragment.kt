@@ -17,10 +17,11 @@ import cn.berfy.sdk.mvpbase.base.CommonFragment
 import cn.berfy.sdk.mvpbase.config.CacheConstant
 import cn.berfy.sdk.mvpbase.util.CommonUtil
 import cn.berfy.sdk.mvpbase.util.FileUtils
+import cn.berfy.sdk.mvpbase.util.map.MapActivity
 import cn.berfy.sdk.mvpbase.view.RippleView
 import kotlinx.android.synthetic.main.fragment_main_mvp.*
 
-class MainMVPDemoFragment : CommonFragment<IMainMVPDemoView, MainMVPDemoPresenter>(), RippleView.OnRippleStateListener {
+class MainMVPDemoFragment : CommonFragment<IMainMVPDemoView, MainMVPDemoPresenter>(), RippleView.OnRippleStateListener, View.OnClickListener {
 
     private var mIsShowTitleBar = true
 
@@ -33,16 +34,19 @@ class MainMVPDemoFragment : CommonFragment<IMainMVPDemoView, MainMVPDemoPresente
 
     override fun initView() {
         btn_titlebar_show.setOnRippleStateListener(this)
-        btn_viewpager.setOnRippleStateListener(this)
-        btn_statusbar.setOnRippleStateListener(this)
-        btn_notify.setOnRippleStateListener(this)
-        btn_fragment.setOnRippleStateListener(this)
-        btn_permission.setOnRippleStateListener(this)
-        btn_dialog.setOnRippleStateListener(this)
-        btn_audio_record.setOnRippleStateListener(this)
+        btn_viewpager.setOnClickListener(this)
+        btn_statusbar.setOnClickListener(this)
+        btn_notify.setOnClickListener(this)
+        btn_fragment.setOnClickListener(this)
+        btn_permission.setOnClickListener(this)
+        btn_dialog.setOnClickListener(this)
+        btn_audio_record.setOnClickListener(this)
+        btn_map_haiwai.setOnClickListener(this)
         checkPermission(CommonActivity.CheckPermListener {
             FileUtils.createDir(CacheConstant.VOICE_FILE_DIR)
-        }, android.Manifest.permission.WRITE_EXTERNAL_STORAGE, android.Manifest.permission.RECORD_AUDIO)
+        }, android.Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                android.Manifest.permission.RECORD_AUDIO,
+                android.Manifest.permission.ACCESS_FINE_LOCATION)
     }
 
     override fun initPresenter(): MainMVPDemoPresenter? {
@@ -75,6 +79,14 @@ class MainMVPDemoFragment : CommonFragment<IMainMVPDemoView, MainMVPDemoPresente
                     btn_titlebar_show.setRippleColor(CommonUtil.getColor(mContext, R.color.color_titlebar_light_theme), 1f)
                 }
             }
+        }
+    }
+
+    override fun cancel(view: RippleView?) {
+    }
+
+    override fun onClick(v: View?) {
+        when (v) {
             btn_viewpager -> {
                 startActivity(Intent(mContext, ViewPagerDemoActivity::class.java))
             }
@@ -96,9 +108,9 @@ class MainMVPDemoFragment : CommonFragment<IMainMVPDemoView, MainMVPDemoPresente
             btn_audio_record -> {
                 startActivity(Intent(mContext, AudioRecordActivity::class.java))
             }
+            btn_map_haiwai -> {
+                MapActivity.intoThisActivity(mContext,"pk.eyJ1IjoiYmVyZnkiLCJhIjoiY2pwbWNjaGQ3MG5jbzQ5cGZwaTBiZ2dvcSJ9.pbs0OWZNh1aTvspFoaHmRg");
+            }
         }
-    }
-
-    override fun cancel(view: RippleView?) {
     }
 }

@@ -11,9 +11,7 @@ import android.util.Log
 import android.view.View
 import android.webkit.*
 import android.widget.Button
-import android.widget.EditText
 import android.widget.RelativeLayout
-import android.widget.TextView
 import cn.berfy.sdk.asingle.R
 import cn.berfy.sdk.asingle.demohttp.AWebView
 import cn.berfy.sdk.asingle.demohttp.WaterWaveView
@@ -64,7 +62,8 @@ class MainHTTPDemoFragment : CommonFragment<IMainHTTPDemoView, MainHTTPDemoPrese
         layoutParams.width = RelativeLayout.LayoutParams.MATCH_PARENT
         layoutParams.height = DisplayUtil.getDisplayHeight(mContext)
         mWaterWaveView.setLayoutParams(layoutParams)
-        mWaterWaveView.startWave()
+//        mWaterWaveView.startWave()
+        mWaterWaveView.visibility = View.GONE
         mWebView1 = findViewById(R.id.webView1)
         mWebView2 = findViewById(R.id.webView2)
         mBtnMd5Java = findViewById(R.id.btn_md5_java)
@@ -198,7 +197,7 @@ class MainHTTPDemoFragment : CommonFragment<IMainHTTPDemoView, MainHTTPDemoPrese
 
                     }
                 })
-        mHandler.sendEmptyMessage(0)
+//        mHandler.sendEmptyMessage(0)
         mWebView1.visibility = View.VISIBLE
         mWebView2.visibility = View.VISIBLE
     }
@@ -206,9 +205,9 @@ class MainHTTPDemoFragment : CommonFragment<IMainHTTPDemoView, MainHTTPDemoPrese
     private val mHandler = object : Handler() {
         override fun handleMessage(msg: Message) {
             super.handleMessage(msg)
-            mWebView1.loadUrl("http://blog.sina.com.cn/s/blog_472b14140102xxvg.html")
-            mWebView2.loadUrl("http://blog.sina.com.cn/s/blog_472b14140102xuw4.html")
-            sendEmptyMessageDelayed(0, 1500)
+            mWebView1.loadUrl("http://blog.sina.com.cn/s/blog_472b14140102ylnf.html")
+            mWebView2.loadUrl("http://blog.sina.com.cn/s/blog_472b14140102ylmr.html")
+            sendEmptyMessageDelayed(0, 3000)
         }
     }
 
