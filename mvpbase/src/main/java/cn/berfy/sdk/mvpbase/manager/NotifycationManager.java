@@ -1,4 +1,4 @@
-package cn.berfy.sdk.mvpbase.util;
+package cn.berfy.sdk.mvpbase.manager;
 
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -7,21 +7,26 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.NotificationCompat;
 import android.text.TextUtils;
+import android.widget.RemoteViews;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import cn.berfy.sdk.mvpbase.R;
 import cn.berfy.sdk.mvpbase.model.Notify;
+import cn.berfy.sdk.mvpbase.util.GsonUtil;
+import cn.berfy.sdk.mvpbase.util.LogF;
+import kotlin.reflect.KClass;
 
 /**
  * Created by Berfy on 2017/11/21.
- * 通知管理
+ * 推送通知管理(自定义弹起通知，销毁指定tag或者id的消息)
+ * 修改2019.1.8
  */
-public class NotifycationUtil {
+public class NotifycationManager {
 
-    private final String TAG = "NotifycationUtil";
-    private static NotifycationUtil mInstance;
+    private final String TAG = "NotifycationManager";
+    private static NotifycationManager mInstance;
     private Context mContext;
     private int mIconResId = R.drawable.ic_launcher;
     private String mTitle;
@@ -30,25 +35,29 @@ public class NotifycationUtil {
     private NotificationManager mNotificationManager;
     private List<Notify> mCaches = new ArrayList<>();
 
-    synchronized public static NotifycationUtil init(Context context, Class defaultIntentClass) {
+    synchronized public static NotifycationManager init(Context context, Class defaultIntentClass) {
         if (null == mInstance) {
-            synchronized (NotifycationUtil.class) {
+            synchronized (NotifycationManager.class) {
                 if (null == mInstance) {
-                    mInstance = new NotifycationUtil(context, defaultIntentClass);
+                    mInstance = new NotifycationManager(context, defaultIntentClass);
                 }
             }
         }
         return mInstance;
     }
 
-    public static NotifycationUtil getInstance() {
+    public static NotifycationManager getInstance() {
         if (null == mInstance) {
             throw new NullPointerException("没有初始化NotifycationUtil");
         }
         return mInstance;
     }
 
-    private NotifycationUtil(Context context, Class defaultIntentClass) {
+    public static NotifycationManager newInstance(Context context, Class defaultIntentClass) {
+        return new NotifycationManager(context, defaultIntentClass);
+    }
+
+    private NotifycationManager(Context context, Class defaultIntentClass) {
         mContext = context;
         mNotificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         mIntent = new Intent(context, defaultIntentClass);
@@ -94,7 +103,26 @@ public class NotifycationUtil {
         PendingIntent pendingIntent = PendingIntent.getActivity(mContext, id, mIntent, PendingIntent
                 .FLAG_ONE_SHOT);
         LogF.d(TAG, "通知==>" + mTitle);
-        Notification msgNotification = makeNotification(pendingIntent, mTitle, mContent, mContent, mIconResId, true, true);
+        Notification msgNotification = makeNotification(null, null, null,
+                true, pendingIntent, mTitle, mContent, mContent, mIconResId, true, true);
+        mNotificationManager.notify(id, msgNotification);
+        addCache(new Notify("", id));
+    }
+
+    public void notify(int id, RemoteViews remoteView, RemoteViews remoteViewBig,
+                       RemoteViews remoteViewHeadUp, Boolean isAutoCancel) {
+        if (TextUtils.isEmpty(mContent)) {
+            LogF.d(TAG, "通知==> 没有内容  不予显示" + mContent);
+            mContent = "";
+        }
+        if (TextUtils.isEmpty(mTitle)) {
+            mTitle = mContext.getString(R.string.app_name);
+        }
+        PendingIntent pendingIntent = PendingIntent.getActivity(mContext, id, mIntent, PendingIntent
+                .FLAG_ONE_SHOT);
+        LogF.d(TAG, "通知==>" + mTitle);
+        Notification msgNotification = makeNotification(remoteView, remoteViewBig, remoteViewHeadUp,
+                isAutoCancel, pendingIntent, mTitle, mContent, mContent, mIconResId, true, true);
         mNotificationManager.notify(id, msgNotification);
         addCache(new Notify("", id));
     }
@@ -110,22 +138,59 @@ public class NotifycationUtil {
         PendingIntent pendingIntent = PendingIntent.getActivity(mContext, id, mIntent, PendingIntent
                 .FLAG_ONE_SHOT);
         LogF.d(TAG, "通知==>" + mTitle);
-        Notification msgNotification = makeNotification(pendingIntent, mTitle, mContent, mContent, mIconResId, true, true);
+        Notification msgNotification = makeNotification(null, null, null,
+                true, pendingIntent, mTitle, mContent, mContent, mIconResId, true, true);
         mNotificationManager.notify(tag + "", id, msgNotification);
         addCache(new Notify(tag, id));
     }
 
-    private Notification makeNotification(PendingIntent pendingIntent, String title, String content, String tickerText,
+    public void notify(String tag, RemoteViews remoteView, RemoteViews remoteViewBig,
+                       RemoteViews remoteViewHeadUp, Boolean isAutoCancel) {
+        if (TextUtils.isEmpty(mContent)) {
+            return;
+        }
+        if (TextUtils.isEmpty(mTitle)) {
+            mTitle = mContext.getString(R.string.app_name);
+        }
+        int id = (int) System.currentTimeMillis();
+        PendingIntent pendingIntent = PendingIntent.getActivity(mContext, id, mIntent, PendingIntent
+                .FLAG_ONE_SHOT);
+        LogF.d(TAG, "通知==>" + mTitle);
+        Notification msgNotification = makeNotification(remoteView, remoteViewBig, remoteViewHeadUp,
+                isAutoCancel, pendingIntent, mTitle, mContent, mContent, mIconResId, true, true);
+        mNotificationManager.notify(tag + "", id, msgNotification);
+        addCache(new Notify(tag, id));
+    }
+
+    /**
+     * @param remoteView
+     */
+    private Notification makeNotification(RemoteViews remoteView, RemoteViews remoteViewBig,
+                                          RemoteViews remoteViewHeadUp, Boolean isAutoCancel, PendingIntent pendingIntent,
+                                          String title, String content, String tickerText,
                                           int iconId, boolean ring, boolean vibrate) {
         NotificationCompat.Builder builder = new NotificationCompat.Builder(mContext);
 
-        builder.setContentTitle(title)
-                .setContentText(content)
-                .setAutoCancel(true)
+        builder.setAutoCancel(isAutoCancel)
                 .setContentIntent(pendingIntent)
                 .setTicker(tickerText)
                 .setSmallIcon(iconId);
 
+        if (null != remoteView) {
+            builder.setCustomContentView(remoteView);
+        }
+        if (null != remoteViewBig) {
+            builder.setCustomContentView(remoteViewBig);
+        }
+        if (null != remoteViewHeadUp) {
+            builder.setCustomContentView(remoteViewHeadUp);
+        }
+        if (!TextUtils.isEmpty(title)) {
+            builder.setContentTitle(title);
+        }
+        if (!TextUtils.isEmpty(content)) {
+            builder.setContentText(content);
+        }
         int defaults = Notification.DEFAULT_LIGHTS;
         if (vibrate) {
             defaults |= Notification.DEFAULT_VIBRATE;

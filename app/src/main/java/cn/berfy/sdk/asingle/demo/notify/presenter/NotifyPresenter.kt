@@ -1,14 +1,12 @@
 package cn.berfy.sdk.asingle.demo.notify.presenter
 
-import android.text.Editable
 import android.text.TextUtils
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.AdapterView
-import android.widget.EditText
 import cn.berfy.sdk.asingle.demo.notify.view.INotifyView
+import cn.berfy.sdk.mvpbase.manager.NotifycationManager
 import cn.berfy.sdk.mvpbase.prensenter.BasePresenter
-import cn.berfy.sdk.mvpbase.util.NotifycationUtil
 import cn.berfy.sdk.mvpbase.util.ToastUtil
 import cn.berfy.sdk.mvpbase.view.RippleView
 
@@ -37,9 +35,9 @@ class NotifyPresenter : BasePresenter<INotifyView>(), RippleView.OnRippleStateLi
                     ToastUtil.getInstances().showShort("请填写内容")
                     return
                 }
-                NotifycationUtil.getInstance().title = title
-                NotifycationUtil.getInstance().content = content
-                NotifycationUtil.getInstance().notify("tag")
+                NotifycationManager.getInstance().title = title
+                NotifycationManager.getInstance().content = content
+                NotifycationManager.getInstance().notify("tag")
             }
             mView.getBtnClearTag() -> {
                 var tagOrId = mView.getEditTag().text.toString().trim()
@@ -49,13 +47,13 @@ class NotifyPresenter : BasePresenter<INotifyView>(), RippleView.OnRippleStateLi
                 }
                 var type = mView.getSprTag().selectedItem.toString()
                 if (type.contains("Id")) {
-                    NotifycationUtil.getInstance().clearNotify(tagOrId.toInt())
+                    NotifycationManager.getInstance().clearNotify(tagOrId.toInt())
                 } else {
-                    NotifycationUtil.getInstance().clearNotify(tagOrId)
+                    NotifycationManager.getInstance().clearNotify(tagOrId)
                 }
             }
             mView.getBtnClear() -> {
-                NotifycationUtil.getInstance().clearAll()
+                NotifycationManager.getInstance().clearAll()
             }
         }
     }

@@ -3,16 +3,26 @@ package cn.berfy.sdk.mvpbase.util;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
+import android.graphics.Color;
+import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.TextPaint;
 import android.text.TextUtils;
+import android.text.style.ForegroundColorSpan;
+import android.widget.CheckBox;
+import android.widget.TextView;
 
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 import java.util.TimeZone;
 import java.util.regex.Matcher;
@@ -36,8 +46,8 @@ public class StringUtils {
      * @return boolean
      */
     public static boolean checkPhone(String phone) {
-//        Pattern pattern = Pattern
-//                .compile("^(13[0-9]|15[0-9]|153|15[6-9]|180|18[23]|18[5-9])\\d{8}$");
+        //        Pattern pattern = Pattern
+        //                .compile("^(13[0-9]|15[0-9]|153|15[6-9]|180|18[23]|18[5-9])\\d{8}$");
         Pattern pattern = Pattern
                 .compile("^(1(([35][0-9])|[8][0-9]|[7][0-9]|[4][0-9]))\\d{8}$");
         Matcher matcher = pattern.matcher(phone);
@@ -65,7 +75,7 @@ public class StringUtils {
      */
     public static Boolean isEmail(String str) {
         Boolean isEmail = false;
-        String expr = "^([a-z0-9A-Z]+[-|\\.]?)+[a-z0-9A-Z]@([a-z0-9A-Z]+(-[a-z0-9A-Z]+)?\\.)+[a-zA-Z]{2,}$";
+        String expr = "^(\\w)+(\\.\\w+)*@(\\w)+((\\.\\w{2,3}){1,3})$";
         if (str.matches(expr)) {
             isEmail = true;
         }
@@ -379,12 +389,12 @@ public class StringUtils {
             if (hotDegree.contains(".0")) {
                 hotDegree = hotDegree.replace(".0", "");
             }
-//            hotDegree = format("%.0f", temp - 0.005);
-//            if (hotDegree.contains(".00")) {
-//                hotDegree = hotDegree.replace(".00", "");
-//            } else if (hotDegree.contains(".") && hotDeStrgree.charAt(hotDegree.length() - 1) == '0') {
-//                hotDegree = hotDegree.replace(String.valueOf(hotDegree.charAt(hotDegree.length() - 1)), "");
-//            }
+            //            hotDegree = format("%.0f", temp - 0.005);
+            //            if (hotDegree.contains(".00")) {
+            //                hotDegree = hotDegree.replace(".00", "");
+            //            } else if (hotDegree.contains(".") && hotDeStrgree.charAt(hotDegree.length() - 1) == '0') {
+            //                hotDegree = hotDegree.replace(String.valueOf(hotDegree.charAt(hotDegree.length() - 1)), "");
+            //            }
             hotDegree = format(Locale.CHINA, "%s万", hotDegree);
         }
         return hotDegree;
@@ -473,6 +483,16 @@ public class StringUtils {
     /**
      * 去除末尾的0
      *
+     * @param num 原始数字或者需要去零的数字
+     */
+    public static String clearZero(double num) {
+        LogF.d("去零", "开始=" + num);
+        return clearZero(num + "");
+    }
+
+    /**
+     * 去除末尾的0
+     *
      * @param rawNum 原始数字或者需要去零的字符
      */
     private static String clearZero(String rawNum) {
@@ -481,11 +501,14 @@ public class StringUtils {
             return "";
         }
         int decimalLen = rawNum.length();
-        int checkZero = rawNum.lastIndexOf("0");
-        LogF.d("去零", "检查零的位置=" + checkZero);
-        if (checkZero >= 0 && checkZero == decimalLen - 1) {//末尾是0去除
-            rawNum = rawNum.substring(0, checkZero);
+        LogF.d("去零", "检查零的位置=" + rawNum.substring(decimalLen - 1, decimalLen));
+        if (rawNum.lastIndexOf(".") != -1 && rawNum.substring(decimalLen - 1, decimalLen).equals("0")) {//末尾是0去除
+            rawNum = rawNum.substring(0, decimalLen - 1);
             LogF.d("去零", "截取后=" + rawNum);
+            rawNum = clearZero(rawNum);
+        } else if (rawNum.substring(decimalLen - 1, decimalLen).equals(".")) {
+            rawNum = rawNum.substring(0, decimalLen - 1);
+            LogF.d("去.", "截取后=" + rawNum);
             rawNum = clearZero(rawNum);
         }
         LogF.d("去零", "最终=" + rawNum);
@@ -504,13 +527,33 @@ public class StringUtils {
     }
 
     /**
-     * 去掉多余的零小数点后
+     * 获取金额
+     */
+    public static String getCash(String rawNum, float Digits) {
+        String cash;
+        if (!isNumber(rawNum)) {
+            LogF.d("numberToThousandsSeparator", "不是数字");
+            ToastUtil.getInstances().showShort("输入无法识别,请重新输入");
+            return rawNum;
+        }
+        if (!"0".equals(rawNum)) {
+            double num = Double.valueOf(rawNum) / Digits;
+            cash = getNumberNoZero(num);
+        } else {
+            cash = "0.0";
+        }
+        return cash;
+    }
+
+    /**
+     * 将小数的".00"去掉使其符合整数  --->1.00->1
      */
     public static String getNumberNoZero(double rawNum) {
+        LogF.d("保留小数点后2位去0", rawNum + "");
         DecimalFormat nf = new DecimalFormat("#.##");
-        String s = nf.format(rawNum);
-        return s;
+        return nf.format(rawNum);
     }
+
 
     /**
      * 判断数字合法性
@@ -597,6 +640,76 @@ public class StringUtils {
             }
         }
         return valueLength;
+    }
+
+
+    /**
+     * 字符串局部变色
+     *
+     * @param otherString  你要变色的字符，可为null
+     * @param changeString 你要变色的字符
+     * @param allString    整个字符串
+     * @param colorString  要变颜色的色值
+     *                     例: stringChangeColor(金额18元,"18元", null,#586E98);
+     */
+    public static SpannableStringBuilder stringChangeColor(String allString, String changeString, String otherString, String colorString) {
+        int start = allString.indexOf(changeString);
+        int end = start + changeString.length();
+
+        SpannableStringBuilder style = new SpannableStringBuilder(allString);
+        if (!"".equals(otherString) && otherString != null) {
+            int bStart = allString.indexOf(otherString);
+            int bEnd = bStart + otherString.length();
+            style.setSpan(new ForegroundColorSpan(Color.parseColor(colorString)), bStart, bEnd,
+                    Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
+        }
+        style.setSpan(new ForegroundColorSpan(Color.parseColor(colorString)), start, end,
+                Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
+
+        return style;
+    }
+
+    //转换数组成List
+    public static <E> List<E> transferArrayToList(E[] array) {
+        List<E> transferedList = new ArrayList<>();
+        Collections.addAll(transferedList, array);
+        return transferedList;
+    }
+
+    public static byte[] short2byte(short s) {
+        byte[] b = new byte[2];
+        for (int i = 0; i < 2; i++) {
+            int offset = 16 - (i + 1) * 8; //因为byte占4个字节，所以要计算偏移量
+            b[i] = (byte) ((s >> offset) & 0xff); //把16位分为2个8位进行分别存储
+        }
+        return b;
+    }
+
+    public static short byte2short(byte[] b) {
+        short l = 0;
+        for (int i = 0; i < 2; i++) {
+            l <<= 8; //<<=和我们的 +=是一样的，意思就是 l = l << 8
+            l |= (b[i] & 0xff); //和上面也是一样的  l = l | (b[i]&0xff)
+        }
+        return l;
+    }
+
+    public static byte[] int2byte(int s) {
+        byte[] b = new byte[2];
+        for (int i = 0; i < 4; i++) {
+            int offset = 16 - (i + 1) * 8; //因为byte占4个字节，所以要计算偏移量
+            b[i] = (byte) ((s >> offset) & 0xff); //把32位分为4个8位进行分别存储
+        }
+        return b;
+    }
+
+    public static int byte2int(byte[] b) {
+        int l = 0;
+        for (int i = 0; i < 4; i++) {
+            l <<= 8; //<<=和我们的 +=是一样的，意思就是 l = l << 8
+            l |= (b[i] & 0xff); //和上面也是一样的  l = l | (b[i]&0xff)
+        }
+        return l;
     }
 
 }
