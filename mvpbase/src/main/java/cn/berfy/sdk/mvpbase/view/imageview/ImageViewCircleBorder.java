@@ -1,4 +1,4 @@
-package cn.berfy.sdk.mvpbase.view;
+package cn.berfy.sdk.mvpbase.view.imageview;
 
 
 import android.content.Context;
@@ -19,7 +19,7 @@ import android.util.AttributeSet;
 import cn.berfy.sdk.mvpbase.R;
 
 
-public class CircleImageView extends android.support.v7.widget.AppCompatImageView {
+public class ImageViewCircleBorder extends android.support.v7.widget.AppCompatImageView {
 
     private static final ScaleType SCALE_TYPE = ScaleType.CENTER_CROP;
 
@@ -50,22 +50,22 @@ public class CircleImageView extends android.support.v7.widget.AppCompatImageVie
     private boolean mReady;
     private boolean mSetupPending;
 
-    public CircleImageView(Context context) {
+    public ImageViewCircleBorder(Context context) {
         super(context);
     }
 
-    public CircleImageView(Context context, AttributeSet attrs) {
+    public ImageViewCircleBorder(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public CircleImageView(Context context, AttributeSet attrs, int defStyle) {
+    public ImageViewCircleBorder(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         super.setScaleType(SCALE_TYPE);
 
-        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.CircleImageView, defStyle, 0);
+        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.ImageViewCircleBorder, defStyle, 0);
 
-        mBorderWidth = a.getDimensionPixelSize(R.styleable.CircleImageView_border_width, DEFAULT_BORDER_WIDTH);
-        mBorderColor = a.getColor(R.styleable.CircleImageView_border_color, DEFAULT_BORDER_COLOR);
+        mBorderWidth = a.getDimensionPixelSize(R.styleable.ImageViewCircleBorder_border_width, DEFAULT_BORDER_WIDTH);
+        mBorderColor = a.getColor(R.styleable.ImageViewCircleBorder_border_color, DEFAULT_BORDER_COLOR);
 
         a.recycle();
 

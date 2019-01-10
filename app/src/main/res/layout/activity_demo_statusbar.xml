@@ -37,7 +37,7 @@
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
 
-                        <cn.berfy.sdk.mvpbase.view.CircleImageView
+                        <cn.berfy.sdk.mvpbase.view.imageview.ImageViewCircleBorder
                             android:layout_width="@dimen/space_50"
                             android:layout_height="@dimen/space_50"
                             android:scaleType="centerCrop"
@@ -45,16 +45,7 @@
                             app:border_color="@color/color_white"
                             app:border_width="@dimen/space_2" />
 
-                        <cn.berfy.sdk.mvpbase.view.CircleImageView
-                            android:layout_width="@dimen/space_50"
-                            android:layout_height="@dimen/space_50"
-                            android:layout_marginLeft="@dimen/space_20"
-                            android:scaleType="centerCrop"
-                            android:src="@drawable/ic_launcher"
-                            app:border_color="@color/color_white"
-                            app:border_width="@dimen/space_2" />
-
-                        <cn.berfy.sdk.mvpbase.view.CircleImageView
+                        <cn.berfy.sdk.mvpbase.view.imageview.ImageViewCircleBorder
                             android:layout_width="@dimen/space_50"
                             android:layout_height="@dimen/space_50"
                             android:layout_marginLeft="@dimen/space_20"
@@ -63,7 +54,7 @@
                             app:border_color="@color/color_white"
                             app:border_width="@dimen/space_2" />
 
-                        <cn.berfy.sdk.mvpbase.view.CircleImageView
+                        <cn.berfy.sdk.mvpbase.view.imageview.ImageViewCircleBorder
                             android:layout_width="@dimen/space_50"
                             android:layout_height="@dimen/space_50"
                             android:layout_marginLeft="@dimen/space_20"
@@ -72,7 +63,7 @@
                             app:border_color="@color/color_white"
                             app:border_width="@dimen/space_2" />
 
-                        <cn.berfy.sdk.mvpbase.view.CircleImageView
+                        <cn.berfy.sdk.mvpbase.view.imageview.ImageViewCircleBorder
                             android:layout_width="@dimen/space_50"
                             android:layout_height="@dimen/space_50"
                             android:layout_marginLeft="@dimen/space_20"
@@ -81,7 +72,7 @@
                             app:border_color="@color/color_white"
                             app:border_width="@dimen/space_2" />
 
-                        <cn.berfy.sdk.mvpbase.view.CircleImageView
+                        <cn.berfy.sdk.mvpbase.view.imageview.ImageViewCircleBorder
                             android:layout_width="@dimen/space_50"
                             android:layout_height="@dimen/space_50"
                             android:layout_marginLeft="@dimen/space_20"
@@ -90,7 +81,16 @@
                             app:border_color="@color/color_white"
                             app:border_width="@dimen/space_2" />
 
-                        <cn.berfy.sdk.mvpbase.view.CircleImageView
+                        <cn.berfy.sdk.mvpbase.view.imageview.ImageViewCircleBorder
+                            android:layout_width="@dimen/space_50"
+                            android:layout_height="@dimen/space_50"
+                            android:layout_marginLeft="@dimen/space_20"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/ic_launcher"
+                            app:border_color="@color/color_white"
+                            app:border_width="@dimen/space_2" />
+
+                        <cn.berfy.sdk.mvpbase.view.imageview.ImageViewCircleBorder
                             android:layout_width="@dimen/space_50"
                             android:layout_height="@dimen/space_50"
                             android:layout_marginLeft="@dimen/space_20"

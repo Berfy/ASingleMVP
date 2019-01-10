@@ -42,14 +42,21 @@
         <attr name="siRadiusMin" format="dimension" />
 
     </declare-styleable>
-    <!--CircleImageView-->
-    <declare-styleable name="CircleImageView">
-        <attr name="border_width" format="dimension" />
-        <attr name="border_color" format="color" />
-    </declare-styleable>
 
     <!--refreshView-->
     <declare-styleable name="refreshView">
         <attr name="bg_color" format="color" />
+    </declare-styleable>
+
+    <!--圆边图片-->
+    <declare-styleable name="ImageViewCircleBorder">
+        <attr name="border_width" format="dimension" />
+        <attr name="border_color" format="color" />
+    </declare-styleable>
+
+    <!--圆形图片-->
+    <declare-styleable name="ImageViewRound">
+        <attr name="roundWidth" format="dimension" />
+        <attr name="roundHeight" format="dimension" />
     </declare-styleable>
 </resources>
